@@ -12,7 +12,7 @@ function ContextAPIProvider({ children }) {
         setLoading(true);
         try {
             const response = await axios.get('https://www.themealdb.com/api/json/v1/1/categories.php');
-            setMeal(response?.data)
+            setMeal(response?.data?.categories)
             console.log(response?.data?.categories);
         } catch (error) {
             console.error('Error fetching categories:', error);
