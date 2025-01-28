@@ -17,6 +17,7 @@ function ResponsiveSlider() {
     const { meal } = useContext(dataContext);
     const settings = {
         dots: false,
+        arrows: false,
         infinite: true,
         autoplay: true,
         pauseOnHover: true,
@@ -25,7 +26,6 @@ function ResponsiveSlider() {
         slidesToShow: 6,
         slidesToScroll: 1,
         initialSlide: 0,
-        arrows: true,
         easing: "linear",
         responsive: [
             {
