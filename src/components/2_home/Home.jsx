@@ -57,7 +57,7 @@ function ResponsiveSlider() {
         ]
     };
     return (
-        <div className="slider-container">
+        <div className="slider-container container">
             <h1 className='slider-title'>Popular Ingredients</h1>
             <Slider {...settings}>
                 {meal?.map((category) => (

@@ -74,7 +74,7 @@ function BrowserCountry() {
       <div className='country-div'>
         {country?.map((element) => (
           <NavLink key={element.id} className='country-link'>
-            <img src={element.imgSrc} alt={element.name} style={{ width: 64 }} />
+            <img src={element.imgSrc} alt={element.name} />
           </NavLink>
         ))}
       </div>
