@@ -38,12 +38,16 @@ function ContextAPIProvider({ children }) {
 
     // Fetch meals by selected area
     const [selectedArea, setSelectedArea] = useState(null);
-    const [mealsArea, setMealsArea] = useState([]);
+    const [mealsArea, setMealsArea] = useState(()=>{
+        const savedMeals = sessionStorage.getItem('savedMeals');
+        return savedMeals ? JSON.parse(savedMeals) : [];
+    });
     const fetchAreaMeals = async () => {
         setLoading(true);
         try {
             const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${selectedArea}`);
             setMealsArea(response?.data?.meals);
+            sessionStorage.setItem('savedMeals', JSON.stringify(response?.data?.meals))
             console.log(response?.data?.meals);
         } catch (error) {
             console.error('Filter meals by Area:', error);
