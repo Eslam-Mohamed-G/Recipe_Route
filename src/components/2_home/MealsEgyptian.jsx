@@ -23,7 +23,9 @@ function MealsEgyptian() {
             <div className='row'>
                 {mealsEgyptian ? mealsEgyptian?.map((meal) => (
                     <div className='card' key={meal.idMeal}>
-                        <img src={meal.strMealThumb} alt={meal.strMeal} className='card-img-top' />
+                        <figure className='card-img-top' >
+                            <img src={meal.strMealThumb} alt={meal.strMeal}/>
+                        </figure>
                         <div className='card-body'>
                             <p className='text-center'>{meal.strMeal}</p>
                         </div>

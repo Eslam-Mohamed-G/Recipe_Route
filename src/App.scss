@@ -145,11 +145,26 @@ body{
         margin: auto;
         padding: 15px;
         cursor: pointer;
+
         .card-img-top{
             max-width: 270px;
             margin-bottom: 5px;
             border-radius: 10px 10px 0px 0px;
+            overflow: hidden;
+            img{
+                -webkit-transition: opacity 1s, -webkit-transform 1s;
+                transition: opacity 1s, transform .5s;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
         }
+        &:hover{
+            img{
+                -webkit-transform: scale3d(1.2, 1.2, 1);
+                transform: scale3d(1.2, 1.2, 1);
+            }
+        }
+
     }
 }
 
