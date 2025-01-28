@@ -13,20 +13,7 @@ function ContextAPIProvider({ children }) {
         try {
             const response = await axios.get('https://www.themealdb.com/api/json/v1/1/categories.php');
             setMeal(response?.data?.categories)
-            console.log(response?.data?.categories);
-        } catch (error) {
-            console.error('Error fetching categories:', error);
-        } finally {
-            setLoading(false);
-        };
-    };
-    
-    const fetchArea = async ()=>{
-        setLoading(true);
-        try {
-            const response = await axios.get('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
-            setMeal(response?.data?.meals)
-            console.log(response?.data?.meals);
+            // console.log(response?.data?.categories);
         } catch (error) {
             console.error('Error fetching categories:', error);
         } finally {
@@ -34,15 +21,43 @@ function ContextAPIProvider({ children }) {
         };
     };
 
+    const fetchArea = async ()=>{
+        setLoading(true);
+        try {
+            const response = await axios.get('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
+            setMeal(response?.data?.meals)
+            // console.log(response?.data?.meals);
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+        } finally {
+            setLoading(false);
+        };
+    };
+
+    // Filter meals by Area
+    const [area, setArea] = useState('Egyptian');
+    const fetchAreaMeals = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`);
+            console.log(response?.data?.meals);
+        } catch (error) {
+            console.error('Filter meals by Area:', error);
+        } finally{
+            setLoading(false);
+        }
+    }
+
     useEffect(() => {
         fetchMeal();
         fetchArea();
+        fetchAreaMeals()
         return () => {
             
         };
     }, []);
     return (
-        <dataContext.Provider value={{ meal, setMeal, loading }}>
+        <dataContext.Provider value={{ meal, setMeal, loading, setArea }}>
             {children}
         </dataContext.Provider>
     )

@@ -33,6 +33,14 @@ body{
         max-width: 1536px;
         padding: 0 50px;
     }
+
+    .row{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+        margin: auto;
+    }
 }
 .text-center{
     text-align: center
@@ -115,6 +123,33 @@ body{
     .country-link{
         padding: 0 3px;
         max-width: fit-content
+    }
+}
+
+.mealsEgyptian{
+    .row{
+        gap: 20px;
+        margin: auto;
+    }
+    color: $text-color;
+    h1{
+        text-transform: capitalize;
+        font-size: 24px;
+        font-weight: 500;
+        color: $title-color;
+    }
+    .card{
+        border: 1px solid $border-color;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: auto;
+        padding: 15px;
+        cursor: pointer;
+        .card-img-top{
+            max-width: 270px;
+            margin-bottom: 5px;
+            border-radius: 10px 10px 0px 0px;
+        }
     }
 }
 
