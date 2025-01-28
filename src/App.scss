@@ -157,12 +157,19 @@ body{
                 -webkit-backface-visibility: hidden;
                 backface-visibility: hidden;
             }
+            @media (max-width: 640px) {
+                max-width: 100%;
+                padding: 0 0px;
+            }
         }
         &:hover{
             img{
                 -webkit-transform: scale3d(1.2, 1.2, 1);
                 transform: scale3d(1.2, 1.2, 1);
             }
+        }
+        @media (max-width: 640px) {
+            max-width: 640px;
         }
 
     }
