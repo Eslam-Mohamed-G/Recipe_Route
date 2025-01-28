@@ -34,12 +34,14 @@ function ContextAPIProvider({ children }) {
         };
     };
 
-    // Filter meals by Area
-    const [area, setArea] = useState('Egyptian');
+    // Fetch meals by selected area
+    const [selectedArea, setSelectedArea] = useState(null);
+    const [mealsArea, setMealsArea] = useState([]);
     const fetchAreaMeals = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`);
+            const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${selectedArea}`);
+            setMealsArea(response?.data?.meals);
             console.log(response?.data?.meals);
         } catch (error) {
             console.error('Filter meals by Area:', error);
@@ -47,17 +49,19 @@ function ContextAPIProvider({ children }) {
             setLoading(false);
         }
     }
+    useEffect(() => {
+        if (selectedArea) {
+            fetchAreaMeals()
+        }
+    }, [selectedArea]);
+    // Fetch meals by selected area
 
     useEffect(() => {
         fetchMeal();
         fetchArea();
-        fetchAreaMeals()
-        return () => {
-            
-        };
     }, []);
     return (
-        <dataContext.Provider value={{ meal, setMeal, loading, setArea }}>
+        <dataContext.Provider value={{ meal, setMeal, loading, setSelectedArea, mealsArea }}>
             {children}
         </dataContext.Provider>
     )

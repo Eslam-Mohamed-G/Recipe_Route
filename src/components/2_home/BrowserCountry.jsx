@@ -1,5 +1,6 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
+import { dataContext } from '../Context/ContextAPIProvider';
 import it from '../../assets/counters/it.png';
 import cn from '../../assets/counters/cn.png';
 import eg from '../../assets/counters/eg.png';
@@ -30,6 +31,8 @@ import ua from '../../assets/counters/UA.png';
 import vn from '../../assets/counters/vn.png';
 
 function BrowserCountry() {
+  const { area } = useParams();
+  const { setSelectedArea } = useContext(dataContext);
   const country = [
     { id: 1, imgSrc: gb, name: 'British' },
     { id: 2, imgSrc: cn, name: 'Chinese' },
@@ -60,12 +63,16 @@ function BrowserCountry() {
     { id: 27, imgSrc: vn, name: 'Vietnamese' },
     { id: 28, imgSrc: it, name: 'Italian' },
   ]
+
+  useEffect(() => {
+    setSelectedArea(area)
+  }, [area]);
   return (
     <div className='container'>
       <h1>Browse Country </h1>
       <div className='country-div'>
         {country?.map((element) => (
-          <NavLink to={element.name} key={element.id} className='country-link'>
+          <NavLink to={`/${encodeURIComponent(element.name)}`} key={element.id} onClick={()=>{setSelectedArea(element.name)}} className='country-link'>
             <img src={element.imgSrc} alt={element.name} />
           </NavLink>
         ))}
