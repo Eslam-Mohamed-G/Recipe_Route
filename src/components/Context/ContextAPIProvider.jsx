@@ -21,6 +21,7 @@ function ContextAPIProvider({ children }) {
         };
     };
 
+    // list all Area for BrowserCountery in 1_home Componenet
     const fetchArea = async ()=>{
         setLoading(true);
         try {
@@ -33,6 +34,7 @@ function ContextAPIProvider({ children }) {
             setLoading(false);
         };
     };
+    // list all Area for BrowserCountery in 1_home Componenet
 
     // Fetch meals by selected area
     const [selectedArea, setSelectedArea] = useState(null);

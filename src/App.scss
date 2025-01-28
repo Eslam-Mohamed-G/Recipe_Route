@@ -141,25 +141,22 @@ body{
     .card{
         border: 1px solid $border-color;
         border-radius: 10px;
+        max-width: 300px;
         overflow: hidden;
         margin: auto;
         padding: 15px;
         cursor: pointer;
 
         .card-img-top{
-            max-width: 270px;
             margin-bottom: 5px;
             border-radius: 10px 10px 0px 0px;
             overflow: hidden;
             img{
+                max-width: 100%;
                 -webkit-transition: opacity 1s, -webkit-transform 1s;
                 transition: opacity 1s, transform .5s;
                 -webkit-backface-visibility: hidden;
                 backface-visibility: hidden;
-            }
-            @media (max-width: 640px) {
-                max-width: 100%;
-                padding: 0 0px;
             }
         }
         &:hover{
@@ -171,7 +168,15 @@ body{
         @media (max-width: 640px) {
             max-width: 640px;
         }
-
+        @media (min-width: 768px) {
+            max-width: 360px;
+        }
+        @media (min-width: 1024px) {
+            max-width: 320px;
+        }
+        @media (min-width: 1280px) {
+            max-width: 300px;
+        }
     }
 }
 
