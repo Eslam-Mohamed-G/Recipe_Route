@@ -44,19 +44,26 @@ body{
         font-weight: 500;
     }
     .card {
-        padding-right: 10px;
+        padding: 5px 6px;
+        overflow: hidden;
+        transition: transform ease-in-out 0.5s;
+        will-change: transform;
         
         .card-body {
             background-color: $second-bg-color;
             border: 1px solid $border-color;
             border-radius: 10px;
             overflow: hidden;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-
+            
             .card-img-top {
                 display: block;
                 width: 100%;
                 object-fit: cover;
+            }
+            &:hover{
+                transform: scale(1.05);
             }
         }
     }
