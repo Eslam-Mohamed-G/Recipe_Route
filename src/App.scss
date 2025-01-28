@@ -105,3 +105,16 @@ body{
     }
 }
 
+
+.country-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: fit-content;
+    padding: 0 5px;
+    .country-link{
+        max-width: fit-content
+    }
+}
+

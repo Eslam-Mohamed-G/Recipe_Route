@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { dataContext } from '../Context/ContextAPIProvider';
 import Slider from 'react-slick';
+import BrowserCountry from './BrowserCountry';
 
 function Home() {
     const { meal, loading } = useContext(dataContext);
     return (
         <div className='container'>
             <ResponsiveSlider/>
+            <BrowserCountry/>
         </div>
     )
 }
