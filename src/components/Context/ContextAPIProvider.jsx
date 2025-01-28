@@ -7,7 +7,7 @@ function ContextAPIProvider({ children }) {
     const [meal, setMeal] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    // List all meal categories
+    // List all meal categories for ResponsiveSlider in Home Component
     const fetchMeal = async ()=>{
         setLoading(true);
         try {
@@ -20,9 +20,23 @@ function ContextAPIProvider({ children }) {
             setLoading(false);
         };
     };
+    
+    const fetchArea = async ()=>{
+        setLoading(true);
+        try {
+            const response = await axios.get('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
+            setMeal(response?.data?.meals)
+            console.log(response?.data?.meals);
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+        } finally {
+            setLoading(false);
+        };
+    };
 
     useEffect(() => {
         fetchMeal();
+        fetchArea();
         return () => {
             
         };
