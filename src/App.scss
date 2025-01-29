@@ -39,6 +39,7 @@ body{
         flex-wrap: wrap;
         flex-direction: row;
         align-items: center;
+        align-content: center;
         margin: auto;
     }
 }
@@ -81,35 +82,74 @@ body{
 
 // navbar 
 .navbar {
+    min-width: 100%;
     background-color: $bg-navbar-color;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    z-index: 99;
 
     .container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-content: center;
-        align-items: center;
+        .row {
+            flex-direction: column;
+            justify-content: space-between;
 
-        .logo {
-            width: 100px;
-        }
-
-        .navbar-collapse {
-
-            .navbar-nav {
+            .navbar-menu{
                 display: flex;
                 flex-direction: row;
-                gap: 15px;
-                z-index: 99;
-
-                .nav-item {
-                    border: 1px solid $border-color;
-                    border-radius: 10px;
-                    padding: 5px 15px;
+                justify-content: space-between;
+                min-width: 100%;
+                .logo {
+                    width: 100px;
+                }
+                .navbar-toggler {
+                    display: block;
+                    .toggler-img {
+                        max-width: 30px;
+                        max-height: 20px;
+                    }
+                    @media (min-width: 640px) {
+                        display: none;
+                    }
+                }
+                @media (min-width: 640px) {
+                    min-width: fit-content;
                 }
             }
+
+            .navbar-collapse{
+                overflow: hidden;
+                transition: all ease-in-out .3s;
+                .navbar-nav {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                    .nav-item {
+                        border: 1px solid $border-color;
+                        border-radius: 10px;
+                        padding: 5px 15px;
+                    }
+                    @media (min-width: 640px) {
+                        flex-direction: row;
+                    }
+                }
+            }
+
+            .navbar-collapse.menuClose {
+                max-height: 0px;
+            }
+
+            .navbar-collapse.menuOpen{
+                max-height: 350px;
+                padding: 20px;
+            }
+            @media (min-width: 640px) {
+                flex-direction: row;
+            }
         }
+    }
+    @media (min-width: 1536px) {
+        padding: 0 45px;
     }
 }
 
