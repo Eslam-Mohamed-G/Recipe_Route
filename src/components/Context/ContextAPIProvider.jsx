@@ -17,7 +17,7 @@ function ContextAPIProvider({ children }) {
             const response = await axios.get('https://www.themealdb.com/api/json/v1/1/categories.php');
             sessionStorage.setItem('sliderCategories', JSON.stringify(response?.data?.categories));
             setMeal(response?.data?.categories);
-            console.log(response?.data?.categories);
+            // console.log(response?.data?.categories);
         } catch (error) {
             console.error('Error fetching categories:', error);
         } finally {
@@ -31,11 +31,12 @@ function ContextAPIProvider({ children }) {
     // List all meal categories for ResponsiveSlider in Home Component
 
     // list all Area for BrowserCountery in 1_home Componenet
+    const [countery, setCountery] = useState([]);
     const fetchArea = async ()=>{
         setLoading(true);
         try {
             const response = await axios.get('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
-            setMeal(response?.data?.meals)
+            setCountery(response?.data?.meals)
             // console.log(response?.data?.meals);
         } catch (error) {
             console.error('Error fetching categories:', error);
@@ -61,7 +62,7 @@ function ContextAPIProvider({ children }) {
             const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${selectedArea}`);
             setMealsArea(response?.data?.meals);
             sessionStorage.setItem('savedMeals', JSON.stringify(response?.data?.meals))
-            console.log(response?.data?.meals);
+            // console.log(response?.data?.meals);
         } catch (error) {
             console.error('Filter meals by Area:', error);
         } finally{
@@ -85,7 +86,7 @@ function ContextAPIProvider({ children }) {
         setLoading(true);
         try {
             const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
-            console.log(response?.data?.meals);
+            // console.log(response?.data?.meals);
             setDetails(response?.data?.meals);
             sessionStorage.setItem('savedDetails', JSON.stringify(response?.data?.meals));
         } catch (error) {
@@ -103,7 +104,7 @@ function ContextAPIProvider({ children }) {
     // Lookup full meal details by id
 
     return (
-        <dataContext.Provider value={{ meal, setMeal, loading, selectedArea, setSelectedArea, mealsArea, setID, details }}>
+        <dataContext.Provider value={{ meal, countery, setMeal, loading, selectedArea, setSelectedArea, mealsArea, setID, details }}>
             {children}
         </dataContext.Provider>
     )

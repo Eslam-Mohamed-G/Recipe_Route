@@ -17,10 +17,10 @@ function Navbar() {
                             <img src={Logo} alt="logo" className='logo' />
                         </NavLink>
                         <button className="navbar-toggler" type="button" onClick={handleMenu}>
-                            {menuToggle ? <img src={MenuOpen} alt="MenuOpen" className='toggler-img' /> : <img src={MenuClose} alt="MenuClose" className='toggler-img' />}
+                            {menuToggle ? <img src={MenuClose} alt="MenuClose" className='toggler-img' /> : <img src={MenuOpen} alt="MenuOpen" className='toggler-img' />}
                         </button>
                     </div>
-                    <div className={`navbar-collapse ${!isOpen ? 'menuOpen' : 'menuClose'}`}>
+                    <div className={`navbar-collapse ${isOpen ? 'menuOpen' : 'menuClose'}`}>
                         <ul className="navbar-nav isOpen">
                             <li className="nav-item">
                                 <NavLink className="nav-link active">Meals</NavLink>

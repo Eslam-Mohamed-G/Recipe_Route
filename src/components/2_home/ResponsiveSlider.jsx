@@ -44,8 +44,8 @@ function ResponsiveSlider() {
         <div className="slider-container container">
             <h1 className="slider-title">Popular Meals Categories</h1>
             <Slider {...settings}>
-                {meal.map((category) => (
-                    <div key={category.idCategory} className="card">
+                {meal.map((category, index) => (
+                    <div key={index} className="card">
                         <div className="card-body">
                             <div className="card-img-top">
                                 <img src={category?.strCategoryThumb} alt={category?.strCategory} />
