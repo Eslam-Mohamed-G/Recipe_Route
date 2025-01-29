@@ -6,7 +6,9 @@ function Layout() {
   return (
       <div className=''>
         <Navbar/>
-        <Outlet/>
+        <div className='outlet-container'>
+          <Outlet/>
+        </div>
       </div>
   )
 }

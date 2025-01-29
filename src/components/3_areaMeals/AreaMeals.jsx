@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { dataContext } from '../Context/ContextAPIProvider';
 
 function AreaMeals() {
     const { mealsArea, loading } = useContext(dataContext);
+    const { area } =useParams();
     return (
         <div className='areaMeals container'>
+            <h1>{area} Meals</h1>
             <div className='row'>
                 {mealsArea?.map((meals) => (
                     // <div className='container'></div>

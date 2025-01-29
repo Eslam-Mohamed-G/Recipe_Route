@@ -47,6 +47,10 @@ body{
     text-align: center
 }
 
+.outlet-container{
+    margin-top: 85px;
+}
+
 .slider-container {
     color: $title-color;
     .slider-title{
@@ -222,11 +226,11 @@ body{
 
 .areaMeals{
     margin-top: 30px;
+    color: $text-color;
     .row{
         gap: 20px;
         margin: auto;
     }
-    color: $text-color;
     h1{
         text-transform: capitalize;
         font-size: 24px;
@@ -272,6 +276,9 @@ body{
         @media (min-width: 1280px) {
             max-width: 300px;
         }
+    }
+    @media (min-width: 1536px) {
+        padding: 0 100px;
     }
 }
 

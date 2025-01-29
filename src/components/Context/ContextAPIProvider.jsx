@@ -67,7 +67,7 @@ function ContextAPIProvider({ children }) {
         fetchArea();
     }, []);
     return (
-        <dataContext.Provider value={{ meal, setMeal, loading, setSelectedArea, mealsArea }}>
+        <dataContext.Provider value={{ meal, setMeal, loading, selectedArea, setSelectedArea, mealsArea }}>
             {children}
         </dataContext.Provider>
     )
