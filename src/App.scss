@@ -19,7 +19,7 @@ body{
 .container{
     width: 100%;
     padding-right: calc(1.5rem * .5);
-    padding-left: calc(0 * .5);
+    padding-left: calc(1.5rem * .5);
     margin-right: auto;
     margin-left: auto;
     
@@ -48,7 +48,7 @@ body{
     }
 
     @media (min-width:576px) {
-        max-width: 540px
+        max-width: 540px;
     }
     
     @media (min-width:768px) {
@@ -72,15 +72,29 @@ body{
 }
 
 .outlet-container{
-    margin-top: 85px;
+    margin-top: 100px;
 }
 
 .slider-container {
     color: $title-color;
+    margin-bottom: 30px;
+    position: relative;
+    &::after{
+        content: "";
+        width: 70%;
+        height: 1px;
+        background-color: $border-color;
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
     .slider-title{
         margin-bottom: 10px;
+        padding-left: 4px;
         font-size: 24px;
         font-weight: 500;
+        font-family: cursive;
     }
     .card {
         padding: 5px 6px;
@@ -238,11 +252,10 @@ body{
             }
         }
         @media (min-width: 640px) {
-            max-width: 100%;
-            margin: auto;
+            max-width: 230px;
         }
         @media (min-width: 768px) {
-            max-width: 330px;
+            max-width: 300px;
         }
         @media (min-width: 1024px) {
             max-width: 290px;
