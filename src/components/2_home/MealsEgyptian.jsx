@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from "axios";
+import { dataContext } from '../Context/ContextAPIProvider';
+import { useNavigate } from 'react-router-dom';
 
 function MealsEgyptian() {
+    const { setID } = useContext(dataContext);
+    const navigate = useNavigate();
     // Filter meals by Area
     const [mealsEgyptian, setMealsEgyptian] = useState([]);
     const fetchAreaMeals = async () => {
@@ -22,7 +26,7 @@ function MealsEgyptian() {
             <h1>some egyptian meals</h1>
             <div className='row'>
                 {mealsEgyptian ? mealsEgyptian?.map((meal) => (
-                    <div className='card' key={meal.idMeal}>
+                    <div className='card' key={meal.idMeal} onClick={() => { setID(meal.idMeal); navigate(`/Egyptian/${meal.strMeal}/${meal.idMeal}`) }}>
                         <figure className='card-img-top' >
                             <img src={meal.strMealThumb} alt={meal.strMeal}/>
                         </figure>

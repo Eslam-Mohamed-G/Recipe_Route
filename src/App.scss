@@ -63,6 +63,7 @@ body{
         overflow: hidden;
         transition: transform ease-in-out 0.5s;
         will-change: transform;
+        min-height: 120px;
         
         .card-body {
             background-color: $second-bg-color;

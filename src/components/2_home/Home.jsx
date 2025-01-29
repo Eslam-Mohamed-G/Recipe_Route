@@ -66,10 +66,10 @@ function ResponsiveSlider() {
                     <div id={category.idCategory} key={index} className='card'>
                         <div className='card-body'>
                             <div className='card-img-top'>
-                                <img src={category.strCategoryThumb} alt={category.strCategory} />
+                                <img src={category?.strCategoryThumb} alt={category?.strCategory} />
                             </div>
                             <div className='card-title'>
-                                <h4 className='text-center'>{category.strCategory}</h4>
+                                <h4 className='text-center'>{category?.strCategory}</h4>
                             </div>
                         </div>
                     </div>

@@ -4,7 +4,10 @@ import axios from "axios";
 export const dataContext = createContext();
 
 function ContextAPIProvider({ children }) {
-    const [meal, setMeal] = useState([]);
+    const [meal, setMeal] = useState(()=>{
+        const sliderCategories = sessionStorage.getItem('sliderCategories');
+        return sliderCategories ? JSON.parse(sliderCategories) : [];
+    });
     const [loading, setLoading] = useState(false);
 
     // List all meal categories for ResponsiveSlider in Home Component
@@ -12,8 +15,9 @@ function ContextAPIProvider({ children }) {
         setLoading(true);
         try {
             const response = await axios.get('https://www.themealdb.com/api/json/v1/1/categories.php');
-            setMeal(response?.data?.categories)
-            // console.log(response?.data?.categories);
+            setMeal(response?.data?.categories);
+            sessionStorage.setItem('sliderCategories', JSON.stringify(response?.data?.categories));
+            console.log(response?.data?.categories);
         } catch (error) {
             console.error('Error fetching categories:', error);
         } finally {
@@ -35,6 +39,11 @@ function ContextAPIProvider({ children }) {
         };
     };
     // list all Area for BrowserCountery in 1_home Componenet
+
+    useEffect(() => {
+        fetchMeal();
+        fetchArea();
+    }, []);
 
     // Fetch meals by selected area
     const [selectedArea, setSelectedArea] = useState(null);
@@ -62,12 +71,35 @@ function ContextAPIProvider({ children }) {
     }, [selectedArea]);
     // Fetch meals by selected area
 
+    // Lookup full meal details by id
+    const [details, setDetails] = useState(()=>{
+        const savedDetails = sessionStorage.getItem('savedDetails');
+        return  savedDetails ? JSON.parse(savedDetails) : [];
+    });
+    const [id, setID] = useState(null)
+    const fetchDetailsById = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+            console.log(response?.data?.meals);
+            setDetails(response?.data?.meals);
+            sessionStorage.setItem('savedDetails', JSON.stringify(response?.data?.meals));
+        } catch (error) {
+            console.error('meals details:', error);
+        } finally{
+            setLoading(false);
+        }
+    }
+
     useEffect(() => {
-        fetchMeal();
-        fetchArea();
-    }, []);
+        if(id) {
+            fetchDetailsById();
+        }
+    }, [id]);
+    // Lookup full meal details by id
+
     return (
-        <dataContext.Provider value={{ meal, setMeal, loading, selectedArea, setSelectedArea, mealsArea }}>
+        <dataContext.Provider value={{ meal, setMeal, loading, selectedArea, setSelectedArea, mealsArea, setID, details }}>
             {children}
         </dataContext.Provider>
     )
