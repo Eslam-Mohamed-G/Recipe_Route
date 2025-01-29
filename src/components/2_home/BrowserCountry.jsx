@@ -68,7 +68,7 @@ function BrowserCountry() {
     setSelectedArea(area)
   }, [area]);
   return (
-    <div className='container'>
+    <div className='container browserCountry'>
       <h1>Browse Country </h1>
       <div className='country-div'>
         {country?.map((element) => (

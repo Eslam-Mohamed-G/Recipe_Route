@@ -199,33 +199,61 @@ body{
     }
 }
 
+.browserCountry{
+    h1{
+        text-transform: capitalize;
+        font-size: 24px;
+        font-weight: 500;
+        padding-left: 4px;
+        font-family: cursive;
+        margin-bottom: 10px;
+        color: $title-color;
+    }
 
-.country-div{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: fit-content;
-    .country-link{
-        padding: 0 3px;
-        max-width: fit-content
+    .country-div{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: fit-content;
+        .country-link{
+            padding: 0 3px;
+            max-width: fit-content
+        }
     }
 }
 
 .mealsEgyptian{
-    color: $text-color;
-    .row{
-        gap: 20px;
-        margin: auto;
+    color: $second-color;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    position: relative;
+    &::after{
+        content: "";
+        width: 70%;
+        height: 1px;
+        background-color: $border-color;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
     }
     h1{
         text-transform: capitalize;
         font-size: 24px;
         font-weight: 500;
+        padding-left: 4px;
+        font-family: cursive;
+        margin-bottom: 10px;
         color: $title-color;
+    }
+    .row{
+        gap: 20px;
+        margin: auto;
     }
     .card{
         border: 1px solid $border-color;
+        box-shadow: $smal-shadow;
         border-radius: 10px;
         max-width: 100%;
         overflow: hidden;
