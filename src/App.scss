@@ -48,7 +48,7 @@ body{
     }
 
     @media (min-width:576px) {
-        max-width: 540px;
+        max-width: 90%;
     }
     
     @media (min-width:768px) {
@@ -370,6 +370,9 @@ body{
             position: absolute;
             right: 0;
             bottom: 0;
+            @media (max-width: 640px) {
+                display: none;
+            }
         }
 
         .card{
@@ -392,6 +395,8 @@ body{
                 border-top: 1px solid $border-color;
                 padding: 15px;
                 display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
                 justify-content: space-between;
                 align-items: center;
                 align-content: center;
@@ -402,14 +407,20 @@ body{
                     align-items: center;
                     text-align: center;
                     background-color: $primey-color;
-
+                    &:first-child{
+                        background-color: #dc2626;
+                    }
+                    
                     .card-link{
-                        padding: 0 10px;
-                        align-items: center;
-                        align-content: center;
-                        justify-items: center;
+                        padding: 3px 10px;
+                        text-transform: uppercase;
+                        display: flex;
+                        flex-direction: row;
+                        gap: 3px;
                         justify-content: center;
                         align-content: center;
+                        align-items: center;
+                        text-align: center;
                     }
                 }
             }
@@ -442,7 +453,10 @@ body{
         }
 
         ul{
-            columns: auto 10rem;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
             margin-bottom: 50px;
             position: relative;
             &::after{
@@ -455,11 +469,19 @@ body{
                 left: 0;
             }
             li{
+                max-width: 9rem;
                 border: 1px solid $border-color;
                 box-shadow: $smal-shadow;
                 border-radius: 10px;
                 overflow: hidden;
                 margin-bottom: 15px;
+
+                @media (min-width:768px) {
+                    max-width: 8rem
+                }
+                @media (min-width:1200px) {
+                    max-width: 9rem
+                }
             }
         }
     }
@@ -473,6 +495,26 @@ body{
             flex: 0 0 auto;
             margin: auto;
             width: 95%;
+        }
+    }
+    @media (min-width: 641px) {
+        .col-md-4{
+            width: 35%;
+        }
+        .col-md-8 {
+            flex: 0 0 auto;
+            margin: auto;
+            width: 65%;
+        }
+    }
+    @media (min-width: 768px) {
+        .col-md-4{
+            width: 35%;
+        }
+        .col-md-8 {
+            flex: 0 0 auto;
+            margin: auto;
+            width: 65%;
         }
     }
 

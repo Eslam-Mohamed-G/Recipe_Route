@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { dataContext } from "../Context/ContextAPIProvider";
 import Slider from "react-slick";
+import AOS from 'aos';
 
 function ResponsiveSlider() {
     const { meal, loading } = useContext(dataContext);
+    useEffect(() => {
+        AOS.init({once: false,});
+    }, []);
 
     const settings = {
         dots: false,
@@ -41,7 +45,7 @@ function ResponsiveSlider() {
     }
 
     return (
-        <div className="slider-container container">
+        <div className="slider-container container" data-aos="fade-up">
             <h1 className="slider-title">Popular Meals Categories</h1>
             <Slider {...settings}>
                 {meal.map((category, index) => (

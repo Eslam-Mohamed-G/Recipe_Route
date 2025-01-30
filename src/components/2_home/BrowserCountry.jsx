@@ -29,6 +29,7 @@ import pt from '../../assets/counters/pt.png';
 import tn from '../../assets/counters/tn.png';
 import ua from '../../assets/counters/UA.png';
 import vn from '../../assets/counters/vn.png';
+import AOS from 'aos';
 
 function BrowserCountry() {
   const { area } = useParams();
@@ -66,13 +67,14 @@ function BrowserCountry() {
 
   useEffect(() => {
     setSelectedArea(area)
+    AOS.init({once: false,});
   }, [area]);
   return (
     <div className='container browserCountry'>
       <h1>Browse Country </h1>
       <div className='country-div'>
         {country?.map((element) => (
-          <NavLink to={`/${encodeURIComponent(element.name)}`} key={element.id} onClick={()=>{setSelectedArea(element.name)}} className='country-link'>
+          <NavLink data-aos="zoom-in" to={`/${encodeURIComponent(element.name)}`} key={element.id} onClick={()=>{setSelectedArea(element.name)}} className='country-link'>
             <img src={element.imgSrc} alt={element.name} />
           </NavLink>
         ))}
