@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Logo from '../../assets/logo.png'
 import MenuOpen from '../../assets/open.png'
 import MenuClose from '../../assets/close.png'
-import { NavLink } from 'react-router';
+import { NavLink, Link } from 'react-router-dom';
 
 function Navbar() {
     const [menuToggle, setMenuToggle] = useState(false);
@@ -13,9 +13,9 @@ function Navbar() {
             <div className='container'>
                 <div className='row'>
                     <div className='navbar-menu'>
-                        <NavLink to={'/'}>
+                        <Link to='/'>
                             <img src={Logo} alt="logo" className='logo' />
-                        </NavLink>
+                        </Link>
                         <button className="navbar-toggler" type="button" onClick={handleMenu}>
                             {menuToggle ? <img src={MenuClose} alt="MenuClose" className='toggler-img' /> : <img src={MenuOpen} alt="MenuOpen" className='toggler-img' />}
                         </button>
@@ -23,13 +23,13 @@ function Navbar() {
                     <div className={`navbar-collapse ${isOpen ? 'menuOpen' : 'menuClose'}`}>
                         <ul className="navbar-nav isOpen">
                             <li className="nav-item">
-                                <NavLink className="nav-link active">Meals</NavLink>
+                                <NavLink to={'/meals'} className="nav-link">Meals</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link">Ingredients</NavLink>
+                                <NavLink to={'/meals'} className="nav-link">Ingredients</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link">Area</NavLink>
+                                <NavLink to={'/meals'} className="nav-link">Area</NavLink>
                             </li>
                         </ul>
                     </div>

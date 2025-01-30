@@ -7,6 +7,7 @@ import AreaMeals from "./components/3_areaMeals/AreaMeals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ContextAPIProvider from "./components/Context/ContextAPIProvider";
 import Details from "./components/4_details/Details";
+import Meals from "./components/5_meals/Meals";
 
 function App() {
   const routes = createBrowserRouter([
@@ -19,6 +20,9 @@ function App() {
         { path: '/:area/:meal/:id', element: <Details /> },
         { path: '*', element: <NotFound /> }
       ],
+    },
+    {
+      path: '/meals', element: <Meals/>
     },
   ]);
 
