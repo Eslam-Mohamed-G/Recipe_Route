@@ -1,11 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { dataContext } from '../Context/ContextAPIProvider';
+import AOS from 'aos';
 
 function AreaMeals() {
     const { mealsArea, loading, setID } = useContext(dataContext);
     const { area } =useParams();
     const navigate = useNavigate();
+    useEffect(() => {
+        AOS.init({once: false,});
+    }, []);
     return (
         <div className='areaMeals container'>
             <h1>{area} Meals</h1>
@@ -13,6 +17,7 @@ function AreaMeals() {
                 {mealsArea?.map((meals) => (
                     <div
                         className='card'
+                        data-aos="zoom-in"
                         key={meals.idMeal}
                         onClick={() => {
                             navigate(`/${area}/${meals.strMeal}/${meals.idMeal}`);
