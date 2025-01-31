@@ -130,7 +130,7 @@ function ContextAPIProvider({ children }) {
         // Filter by Category for in 5_meals Component
         const [selectedCategory, setSelectedCategory] = useState(()=>{
             const savedCategory = sessionStorage.getItem('savedCategory');
-            return savedCategory ? JSON.parse(savedCategory) : 'Seafood';
+            return savedCategory ? JSON.parse(savedCategory) : 'Beef';
         });
         const [mealsByCategoy, setMealsByCategoy] = useState([]);
         const fetchMealsByCategory = async () => {

@@ -21,9 +21,10 @@ function App() {
         { path: '*', element: <NotFound /> }
       ],
     },
-    {
-      path: '/meals', element: <Meals/>
-    },
+    { path: '/meals/:category', element: <Meals/>, },
+    { path: '/ingredients', element: <Meals/>, },
+    { path: '/area', element: <Meals/>, },
+    { path: '/:nav/:category/:name/:id', element: <Details/>, },
   ]);
 
   return (

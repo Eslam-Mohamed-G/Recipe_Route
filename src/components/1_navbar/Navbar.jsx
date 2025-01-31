@@ -23,13 +23,13 @@ function Navbar() {
                     <div className={`navbar-collapse ${isOpen ? 'menuOpen' : 'menuClose'}`}>
                         <ul className="navbar-nav isOpen">
                             <li className="nav-item">
-                                <NavLink to={'/meals'} className="nav-link">Meals</NavLink>
+                                <NavLink to={'/meals/beef'} className="nav-link">Meals</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/meals'} className="nav-link">Ingredients</NavLink>
+                                <NavLink to={'/ingredients'} className="nav-link">Ingredients</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={'/meals'} className="nav-link">Area</NavLink>
+                                <NavLink to={'/area'} className="nav-link">Area</NavLink>
                             </li>
                         </ul>
                     </div>

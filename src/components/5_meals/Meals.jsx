@@ -1,29 +1,16 @@
 import React, { useContext } from 'react';
-import Logo from '../../assets/logo.png';
-import Favicon from '../../assets/favicon.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { dataContext } from '../Context/ContextAPIProvider';
+import SideNav from '../1_navbar/SideNav';
 
 function Meals() {
-    const { categories, mealsByCategoy, setSelectedCategory } = useContext(dataContext);
+    const navigate = useNavigate();
+    const { category } = useParams();
+    const { categories, mealsByCategoy, setSelectedCategory, setID } = useContext(dataContext);
     return (
         <div className='mealsContainer'>
             <div className='left'>
-                <NavLink to={'/'}>
-                    <img src={Logo} alt="logo" className='logo' />
-                </NavLink>
-
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <NavLink to='/meals' className="nav-link"><img src={Favicon} alt="nav-logo" className='nav-logo' />Meals</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink to='/#' className="nav-link"><img src={Favicon} alt="nav-logo" className='nav-logo' />Ingredients</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink to='/#' className="nav-link"><img src={Favicon} alt="nav-logo" className='nav-logo' />Area</NavLink>
-                    </li>
-                </ul>
+                <SideNav/>
             </div>
 
             <div className='right'>
@@ -36,26 +23,56 @@ function Meals() {
                                     key={index} 
                                     className='list'
                                     onClick={()=>{
+                                        navigate(`/meals/${element.strCategory}`);
                                         setSelectedCategory(element.strCategory);
                                         sessionStorage.setItem('savedCategory', JSON.stringify(element.strCategory));
                                     }}
                                 >
-                                    {element.strCategory}
+                                    <NavLink to={`/meals/${element.strCategory}`}>{element.strCategory}</NavLink>
+                                    
                                 </li>
                             ))}
                         </ul>
 
                         <select className="categories-select" defaultValue="">
                             <option value="" disabled>Choose Category</option>
-                            {categories?.map((element, index) => (<option key={index} className='list'>{element.strCategory}</option>))}
+                            {categories?.map((element, index) => (
+                                <option
+                                    key={index}
+                                    className='list'
+                                    onClick={() => {
+                                        navigate(`/meals/${element.strCategory}`);
+                                        setSelectedCategory(element.strCategory);
+                                        sessionStorage.setItem('savedCategory', JSON.stringify(element.strCategory));
+                                    }}
+                                >
+                                    {element.strCategory}
+                                </option>))}
                         </select>
                     </div>
                 </div>
 
-                <div className='container'>
-                    {mealsByCategoy?.map((meals)=>(
-                        <div>
-                            <img src={meals.strMealThumb} alt="" />
+                <div className='meal-container'>
+                    {mealsByCategoy?.map((meals) => (
+                        <div className='meal-card' key={meals.idMeal}>
+                            <div className='meal-card-body'>
+                                <figure className='meal-img'>
+                                    <img src={meals.strMealThumb} alt={meals.strMealThumb} />
+                                </figure>
+                                <div className="meal-text">
+                                </div>
+                                <div className='meal-card-footer'>
+                                    <p>{meals.strMeal.split(' ').slice(0, 2).join(' ')}</p>
+                                    <button 
+                                        onClick={()=>{
+                                            navigate(`/meals/${category}/${meals.strMeal}/${meals.idMeal}`);
+                                            setID(meals.idMeal);
+                                        }}
+                                    >
+                                        <span>view recipe</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>

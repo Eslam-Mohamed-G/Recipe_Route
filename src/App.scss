@@ -629,7 +629,7 @@ body{
                         cursor: pointer;
                         &:hover{
                             background-color: $second-bg-color;
-                            box-shadow: 0 4px 8px 0 rgba($text-color, 0.03), 0 6px 20px 0 rgba($text-color, 0.19);
+                            box-shadow: 0 4px 8px 0 rgba($text-color, 0.06), 0 6px 20px 0 rgba($text-color, 0.19);
                         }
                     }
                 }
@@ -643,6 +643,72 @@ body{
                     padding: 5px 15px;
                     @media (min-width: 640px) {
                         display: none;
+                    }
+                }
+
+            }
+        }
+
+        .meal-container{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: center;
+            column-gap: 30px;
+            row-gap: 70px;
+            margin-top: 100px;
+            .meal-card{
+                background-color: $second-bg-color;
+                border-radius: 30px;
+                width: 17rem;
+                transition: all ease-in-out .3s;
+                font-family: cursive;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 800;
+                .meal-card-body{
+                    position: relative;
+                    .meal-img{
+                        max-width: 180px;
+                        max-height: 180px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        transition: all ease-in-out .4s;
+                        box-shadow: 0 8px 16px 0 rgba($text-color, 0.4), 0 6px 20px 0 rgba($text-color, 0.19);
+                        position: relative;
+                        top: -45px;
+                        left: 45px;
+                    }
+
+                    .meal-card-footer{
+                        position: relative;
+                        top: -20px;
+                        align-items: center;
+                        align-content: center;
+                        button{
+                            background-color: rgb(33, 186, 117);
+                            color: $second-bg-color;
+                            font-weight: 700;
+                            opacity: .9;
+                            border-radius: 20px;
+                            margin-top: 5px;
+                            padding: 5px 15px;
+                            opacity: .7;
+                            transition: all ease-in-out .3s;
+
+                            &:hover{
+                                scale: 1.04;
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+                &:hover{
+                    scale: 1.02;
+                    box-shadow: 0 4px 8px 0 rgba($text-color, 0.06), 0 6px 20px 0 rgba($text-color, 0.19);
+
+                    .meal-img{
+                        transform: rotate(360deg);
                     }
                 }
             }
