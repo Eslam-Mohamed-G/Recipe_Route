@@ -28,7 +28,7 @@ function Meals() {
                                         sessionStorage.setItem('savedCategory', JSON.stringify(element.strCategory));
                                     }}
                                 >
-                                    <NavLink to={`/meals/${element.strCategory}`}>{element.strCategory}</NavLink>
+                                    <NavLink to={`/meals/${element.strCategory}`} className='categories-link'>{element.strCategory}</NavLink>
                                     
                                 </li>
                             ))}

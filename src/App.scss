@@ -620,16 +620,26 @@ body{
                         gap: 20px;
                     }
                     .list{
-                        border: 1px solid $border-color;
-                        color: $text-color;
-                        border-radius: 25px;
-                        padding: 5px 15px;
-                        font-family: cursive;
-                        transition: all ease-in-out .3s;
-                        cursor: pointer;
-                        &:hover{
-                            background-color: $second-bg-color;
-                            box-shadow: 0 4px 8px 0 rgba($text-color, 0.06), 0 6px 20px 0 rgba($text-color, 0.19);
+                        .categories-link{
+                            border: 1px solid $border-color;
+                            color: $text-color;
+                            border-radius: 25px;
+                            padding: 5px 15px;
+                            font-family: cursive;
+                            transition: all ease-in-out .3s;
+                            cursor: pointer;
+                            &:hover{
+                                background-color: $second-bg-color;
+                                box-shadow: 0 4px 8px 0 rgba($text-color, 0.06), 0 6px 20px 0 rgba($text-color, 0.19);
+                            }
+
+                        }
+                        .categories-link.active{
+                            color: $second-bg-color;
+                            &:hover{
+                                background-color: $second-color;
+                                box-shadow: 0 4px 8px 0 rgba($text-color, 0.06), 0 6px 20px 0 rgba($text-color, 0.19);
+                            }
                         }
                     }
                 }
