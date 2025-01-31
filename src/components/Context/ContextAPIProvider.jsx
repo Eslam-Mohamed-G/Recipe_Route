@@ -149,9 +149,25 @@ function ContextAPIProvider({ children }) {
         }, [selectedCategory]);
         // Filter by Category for in 5_meals Component
 
+        // List all Ingredients for in 6_Ingredients Component
+        const [Ingredients, setIngredients] = useState([]);
+        const fetchAllIngredients = async () => {
+            try {
+                const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/list.php?i=list`);
+                setIngredients(response?.data?.meals);
+                // console.log(response?.data?.meals);
+            } catch (error) {
+                console.error('List all Ingredients:', error);
+            }
+        };
+        useEffect(() => {
+            fetchAllIngredients();
+        }, []);
+        // List all Ingredients for in 6_Ingredients Component
+
 
     return (
-        <dataContext.Provider value={{ meal, countery, categories, mealsByCategoy, setSelectedCategory, setMeal, loading, selectedArea, setSelectedArea, mealsArea, setID, details }}>
+        <dataContext.Provider value={{ meal, countery, categories, mealsByCategoy, setSelectedCategory, setMeal, loading, selectedArea, setSelectedArea, mealsArea, setID, details, Ingredients }}>
             {children}
         </dataContext.Provider>
     )
