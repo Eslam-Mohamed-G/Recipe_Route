@@ -17,13 +17,13 @@ function App() {
       children: [
         { index: true, element: <Home /> },
         { path: ':area', element: <AreaMeals /> },
-        { path: '/:area/:meal/:id', element: <Details /> },
         { path: '*', element: <NotFound /> }
       ],
     },
     { path: '/meals/:category', element: <Meals/>, },
     { path: '/ingredients', element: <Meals/>, },
     { path: '/area', element: <Meals/>, },
+    { path: '/:area/:meal/:id', element: <Details /> },
     { path: '/:nav/:category/:name/:id', element: <Details/>, },
   ]);
 

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { dataContext } from '../Context/ContextAPIProvider';
 import AOS from 'aos';
+import Navbar from '../1_navbar/Navbar';
 
 
 function Details() {
@@ -9,6 +10,8 @@ function Details() {
         AOS.init({once: false,});
     }, []);
     return (
+        <>
+            <Navbar/>
         <div className='container'>
             {details?.map((element) => (
                 <div className="row details" key={element.idMeal}>
@@ -72,6 +75,7 @@ function Details() {
                 </div>
             ))}
         </div>
+        </>
     )
 }
 
