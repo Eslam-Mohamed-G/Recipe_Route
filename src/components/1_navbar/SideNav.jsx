@@ -1,11 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Logo from '../../assets/logo.png';
 import Favicon from '../../assets/favicon.png';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import { dataContext } from '../Context/ContextAPIProvider';
+import { NavLink, useParams } from 'react-router-dom';
 
 function SideNav() {
-    const navigate = useNavigate();
     const { category } = useParams();
     return (
         <div>
