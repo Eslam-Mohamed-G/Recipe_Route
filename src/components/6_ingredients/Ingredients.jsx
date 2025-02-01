@@ -8,20 +8,23 @@ function Ingredients() {
     return (
         <div className='ingredients-container'>
             <div className='left'>
-                <SideNav />
+                <div className='sideNav'>
+                    <SideNav />
+                </div>
             </div>
             <div className='right'>
                 <div className='container'>
-                    <div className="row">
-                        go
+                    <ul className="">
                         {Ingredients ? Ingredients?.map((element) => (
-                            <div className="card" key={element.idIngredient}>
-                                <img src={`https:/www.themealdb.com/images/ingredients/${element.strIngredient}-small.png`} alt={element.strIngredient} />
-                                <p>{element.strIngredient}</p>
-                                {/* <p>{element.strDescription || "No description available"}</p> */}
-                            </div>
+                            <li className="" key={element.idIngredient}>
+                                <div className='li-body'>
+                                    <img src={`https:/www.themealdb.com/images/ingredients/${element.strIngredient}-small.png`} alt={element.strIngredient} />
+                                    <p>{element.strIngredient}</p>
+                                    {/* <p>{element.strDescription || "No description available"}</p> */}
+                                </div>
+                            </li>
                         )) : <p>loading...</p>}
-                    </div>
+                    </ul>
                 </div>
             </div>
         </div>
