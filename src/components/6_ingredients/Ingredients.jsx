@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { dataContext } from '../Context/ContextAPIProvider';
 import SideNav from '../1_navbar/SideNav';
 import Footer from '../8_footer/Footer';
+import AOS from 'aos';
 
 function Ingredients() {
     const { Ingredients } = useContext(dataContext);
-    console.log(Ingredients);
+    useEffect(() => {
+        AOS.init({once: false,});
+    }, []);
     return (
+        <>
         <div className='ingredients-container'>
             <div className='left'>
                 <div className='sideNav'>
@@ -18,7 +22,7 @@ function Ingredients() {
                     <h1 className='text-gradient'>Learn, Cook, Eat Your Food</h1>
                     <ul className="">
                         {Ingredients ? Ingredients?.map((element) => (
-                            <li className="" key={element.idIngredient}>
+                            <li className="" data-aos="fade-up" key={element.idIngredient}>
                                 <div className='li-body'>
                                     <img src={`https:/www.themealdb.com/images/ingredients/${element.strIngredient}-small.png`} alt={element.strIngredient} />
                                     <p>{element.strIngredient}</p>
@@ -29,10 +33,11 @@ function Ingredients() {
                     </ul>
                 </div>
             </div>
+        </div>
             <div className='footer'>
                 <Footer/>
             </div>
-        </div>
+        </>
     )
 }
 

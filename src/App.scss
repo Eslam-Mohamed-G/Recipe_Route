@@ -548,7 +548,7 @@ body{
     display: flex;
 
     .right{
-        padding-top: 50px;
+        padding: 50px 0px;
         overflow: hidden;
         .text-gradient {
             @include text-gradient();
@@ -680,6 +680,7 @@ body{
             }
         }
     }
+
 }
 
 
@@ -690,7 +691,6 @@ body{
         gap: 10px;
         text-align: center;
         @include ul-disgen();
-        padding-bottom: 150px;
         
         .text-gradient {
             @include text-gradient;
@@ -720,7 +720,7 @@ body{
 
 .footer{
     background-color: $second-bg-color;
-    margin-top: 50px;
+    // margin-top: 50px;
     .footer-body{
         @include section-divider();
         @include flex-center();
