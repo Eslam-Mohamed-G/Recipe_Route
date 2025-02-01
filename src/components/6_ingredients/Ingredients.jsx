@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { dataContext } from '../Context/ContextAPIProvider';
 import SideNav from '../1_navbar/SideNav';
+import Footer from '../8_footer/Footer';
 
 function Ingredients() {
     const { Ingredients } = useContext(dataContext);
@@ -14,6 +15,7 @@ function Ingredients() {
             </div>
             <div className='right'>
                 <div className='container'>
+                    <h1 className='text-gradient'>Learn, Cook, Eat Your Food</h1>
                     <ul className="">
                         {Ingredients ? Ingredients?.map((element) => (
                             <li className="" key={element.idIngredient}>
@@ -26,6 +28,9 @@ function Ingredients() {
                         )) : <p>loading...</p>}
                     </ul>
                 </div>
+            </div>
+            <div className='footer'>
+                <Footer/>
             </div>
         </div>
     )

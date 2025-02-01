@@ -690,6 +690,19 @@ body{
         gap: 10px;
         text-align: center;
         @include ul-disgen();
+        padding-bottom: 150px;
+        
+        .text-gradient {
+            @include text-gradient;
+        }
+        h1{
+            @include title();
+        }
+    }
+    .footer{
+        width: 100%;
+        position: fixed;
+        bottom: 0;
     }
 }
 
