@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from '../../assets/logo.png';
 import Favicon from '../../assets/favicon.png';
 import { NavLink, useParams } from 'react-router-dom';
+import MenuOpen from '../../assets/open.png'
 
 function SideNav() {
     const { category } = useParams();
     const defaultCategory = category || 'beef';
+    const [open, setOpen] = useState(false);
+    const handleMenu = ()=>{
+        setOpen(!open)
+    };
     return (
-        <div>
+        <>
+            <img src={MenuOpen} alt="MenuOpen" className={`menuIcon ${ !open ? 'open' : 'close'}`} onClick={handleMenu}/>
+        <div className={`side-navbar ${ !open ? 'open' : 'close'}`}>
             <NavLink to={'/'}>
                 <img src={Logo} alt="logo" className='logo' />
             </NavLink>
@@ -24,6 +31,7 @@ function SideNav() {
                 </li>
             </ul>
         </div>
+        </>
     )
 }
 
