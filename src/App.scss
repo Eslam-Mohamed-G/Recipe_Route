@@ -692,6 +692,27 @@ body{
         @include ul-disgen();
     }
 }
+
+.footer{
+    background-color: $second-bg-color;
+    margin-top: 50px;
+    .footer-body{
+        @include section-divider();
+        @include flex-center();
+        @include title();
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        .logo{
+            width: 100px;
+        }
+    }
+    .copy-right{
+        text-align: center;
+        padding: 20px;
+        @include title();
+    }
+}
 .active{
     background-color: $second-color;
     border: 1px solid $second-color;

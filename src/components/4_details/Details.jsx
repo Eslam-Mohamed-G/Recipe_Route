@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { dataContext } from '../Context/ContextAPIProvider';
 import AOS from 'aos';
 import Navbar from '../1_navbar/Navbar';
+import Footer from '../8_footer/Footer';
 
 
 function Details() {
@@ -75,6 +76,7 @@ function Details() {
                 </div>
             ))}
         </div>
+        <Footer/>
         </>
     )
 }

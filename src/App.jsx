@@ -9,6 +9,7 @@ import ContextAPIProvider from "./components/Context/ContextAPIProvider";
 import Details from "./components/4_details/Details";
 import Meals from "./components/5_meals/Meals";
 import Ingredients from "./components/6_ingredients/Ingredients";
+import Area from "./components/7_area/Area";
 
 function App() {
   const routes = createBrowserRouter([
@@ -23,7 +24,7 @@ function App() {
     },
     { path: '/meals/:category', element: <Meals/>, },
     { path: '/ingredients', element: <Ingredients/>, },
-    { path: '/area', element: <Meals/>, },
+    { path: '/area', element: <Area/>, },
     { path: '/:area/:meal/:id', element: <Details /> },
     { path: '/:nav/:category/:name/:id', element: <Details/>, },
   ]);
