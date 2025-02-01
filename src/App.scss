@@ -693,6 +693,18 @@ body{
     }
 }
 
+.area-container{
+    @include flex-center($direction: column);
+    .content{
+        margin-top: 90px;
+    }
+    .footer{
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+    }
+}
+
 .footer{
     background-color: $second-bg-color;
     margin-top: 50px;
