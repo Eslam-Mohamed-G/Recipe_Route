@@ -10,7 +10,9 @@ function Meals() {
     return (
         <div className='mealsContainer'>
             <div className='left'>
-                <SideNav/>
+                <div className='sideNav'>
+                    <SideNav />
+                </div>
             </div>
 
             <div className='right'>
