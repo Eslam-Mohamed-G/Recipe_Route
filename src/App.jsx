@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.scss";
+import "./App.css";
+import './App.module.scss';
 import Home from "./components/2_home/Home";
 import Layout from "./components/layout/Layout";
 import NotFound from "./components/notFound/NotFound";
