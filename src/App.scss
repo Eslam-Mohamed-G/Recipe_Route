@@ -14,10 +14,19 @@ $pacifico-font: 'Pacifico', cursive;
 @mixin flex-center($direction: row) {
     display: flex;
     flex-wrap: wrap;
+    // align-items: center;
     justify-content: center;
-    align-items: center;
     flex-direction: $direction;
+    .col {
+        flex: 1 0 0%
+    }
 }
+@mixin responsive($breakpoint) {
+    @media (min-width: $breakpoint) {
+        @content;
+    }
+}
+
 @mixin card-styles {
     background-color: $second-bg-color;
     border: 1px solid $border-color;
@@ -34,14 +43,61 @@ $pacifico-font: 'Pacifico', cursive;
         box-shadow: $smal-shadow;
     }
 }
+@mixin img-hover-effect {
+    img {
+        max-width: 100%;
+        -webkit-transition: opacity 1s, -webkit-transform 1s;
+        transition: opacity 1s, transform .5s;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    &:hover {
+        img {
+            -webkit-transform: scale3d(1.2, 1.2, 1);
+            transform: scale3d(1.2, 1.2, 1);
+        }
+    }
+}
 
 @mixin title {
-    margin-bottom: 10px;
-    padding-left: 4px;
+    text-transform: capitalize;
     font-size: 24px;
     font-weight: 500;
+    padding-left: 4px;
     font-family: cursive;
+    margin-bottom: 10px;
+    color: $title-color;
 }
+
+@mixin section-divider {
+    position: relative;
+
+    &::after {
+        content: "";
+        width: 70%;
+        height: 1px;
+        background-color: $border-color;
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+@mixin text-gradient {
+    background: linear-gradient(to right, $second-color, rgba(202, 16, 35, 0.77), #c90519);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: start;
+            
+    font: {
+        size: 2.5rem;
+        weight: bold;
+        family: $pacifico-font;
+    }
+}
+
 body{
     background-color: $bg-color;
     padding: 0px;
@@ -49,55 +105,27 @@ body{
     box-sizing: border-box;
 }
 
-.container{
+.container {
     width: 100%;
-    padding-right: calc(1.5rem * .5);
-    padding-left: calc(1.5rem * .5);
-    margin-right: auto;
-    margin-left: auto;
-    
+    padding: 0 calc(1.5rem * 0.5);
+    margin: 0 auto;
+
+    @each $breakpoint, $width in (576px:90%, 768px:720px, 992px:960px, 1200px:1140px, 1400px:1320px) {
+        @include responsive($breakpoint) {
+            max-width: $width;
+        }
+    }
+
     .row {
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 0;
-        margin-right: calc(-.5 * 1.5rem);
-        margin-left: calc(-.5 * 1.5rem);
+        @include flex-center;
+        margin: 0 calc(-0.5 * 1.5rem);
 
-        .col {
-            flex: 1 0 0%
+        &>* {
+            flex-shrink: 0;
+            width: 100%;
+            max-width: 100%;
+            padding: 0 calc(1.5rem * 0.5);
         }
-    }
-    
-    .row>* {
-        flex-shrink: 0;
-        width: 100%;
-        max-width: 100%;
-        padding-right: calc(1.5rem * .5);
-        padding-left: calc(1.5rem * .5);
-        margin-top: 0;
-        .col {
-            flex: 1 0 0%
-        }
-    }
-
-    @media (min-width:576px) {
-        max-width: 90%;
-    }
-    
-    @media (min-width:768px) {
-        max-width: 720px
-    }
-    
-    @media (min-width:992px) {
-        max-width: 960px
-    }
-    
-    @media (min-width:1200px) {
-        max-width: 1140px
-    }
-    
-    @media (min-width:1400px) {
-        max-width: 1320px
     }
 }
 .text-center{
@@ -111,26 +139,13 @@ body{
 .slider-container {
     color: $title-color;
     margin-bottom: 30px;
-    position: relative;
-    &::after{
-        content: "";
-        width: 70%;
-        height: 1px;
-        background-color: $border-color;
-        position: absolute;
-        bottom: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+    @include section-divider;
+    
     .slider-title{
         @include title;
     }
     .card {
         padding: 5px 6px;
-        // overflow: hidden;
-        // transition: transform ease-in-out 0.5s;
-        // will-change: transform;
-        // min-height: 120px;
         
         .card-body {
             @include card-styles;
@@ -238,21 +253,12 @@ body{
 
 .browserCountry{
     h1{
-        text-transform: capitalize;
-        font-size: 24px;
-        font-weight: 500;
-        padding-left: 4px;
-        font-family: cursive;
-        margin-bottom: 10px;
-        color: $title-color;
+        @include title;
     }
 
     .country-div{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
         max-width: fit-content;
+        @include flex-center;
         .country-link{
             padding: 0 3px;
             max-width: fit-content
@@ -264,58 +270,24 @@ body{
     color: $second-color;
     padding-bottom: 15px;
     margin-bottom: 25px;
-    position: relative;
-    &::after{
-        content: "";
-        width: 70%;
-        height: 1px;
-        background-color: $border-color;
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+    @include section-divider();
     h1{
-        text-transform: capitalize;
-        font-size: 24px;
-        font-weight: 500;
-        padding-left: 4px;
-        font-family: cursive;
-        margin-bottom: 10px;
-        color: $title-color;
+        @include title();
     }
     .row{
         gap: 20px;
         margin: auto;
     }
     .card{
-        background-color: $second-bg-color;
-        border: 1px solid $border-color;
-        box-shadow: $smal-shadow;
-        border-radius: 10px;
-        max-width: 100%;
-        overflow: hidden;
+        @include card-styles();
+        @include img-hover-effect();
         margin: auto;
         padding: 15px;
-        cursor: pointer;
 
         .card-img-top{
             margin-bottom: 5px;
             border-radius: 10px 10px 0px 0px;
             overflow: hidden;
-            img{
-                max-width: 100%;
-                -webkit-transition: opacity 1s, -webkit-transform 1s;
-                transition: opacity 1s, transform .5s;
-                -webkit-backface-visibility: hidden;
-                backface-visibility: hidden;
-            }
-        }
-        &:hover{
-            img{
-                -webkit-transform: scale3d(1.2, 1.2, 1);
-                transform: scale3d(1.2, 1.2, 1);
-            }
         }
         @media (min-width: 640px) {
             max-width: 230px;
@@ -340,37 +312,17 @@ body{
         margin: auto;
     }
     h1{
-        text-transform: capitalize;
-        font-size: 24px;
-        font-weight: 500;
-        color: $title-color;
+        @include title();
     }
     .card{
-        border: 1px solid $border-color;
-        border-radius: 10px;
-        max-width: 300px;
-        overflow: hidden;
-        margin: auto;
+        @include card-styles();
+        @include img-hover-effect();
         padding: 15px;
-        cursor: pointer;
 
         .card-img-top{
             margin-bottom: 5px;
             border-radius: 10px 10px 0px 0px;
             overflow: hidden;
-            img{
-                max-width: 100%;
-                -webkit-transition: opacity 1s, -webkit-transform 1s;
-                transition: opacity 1s, transform .5s;
-                -webkit-backface-visibility: hidden;
-                backface-visibility: hidden;
-            }
-        }
-        &:hover{
-            img{
-                -webkit-transform: scale3d(1.2, 1.2, 1);
-                transform: scale3d(1.2, 1.2, 1);
-            }
         }
         @media (max-width: 640px) {
             max-width: 640px;
@@ -393,8 +345,8 @@ body{
     .col-md-4 {
         flex: 0 0 auto;
         width: 33.33333333%;
-        position: relative;
         margin: 0 auto;
+        position: relative;
         &::before{
             content: "";
             background-color: $border-color;
@@ -427,12 +379,8 @@ body{
             .card-footer{
                 border-top: 1px solid $border-color;
                 padding: 15px;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
+                @include flex-center();
                 justify-content: space-between;
-                align-items: center;
-                align-content: center;
 
                 .card-span{
                     color: $second-bg-color;
@@ -465,24 +413,12 @@ body{
         width: 66.66666667%;
         text-align: center;
         padding-top: 80px;
+
         .text-gradient {
-                font-size: 2.5rem;
-                font-weight: bold;
-                font-family: $pacifico-font;
-                background: linear-gradient(to right,
-                        $second-color,
-                        rgba(202, 16, 35, 0.77),
-                        #c90519);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
-            }
+            @include text-gradient;
+        }
         h1{
-            font-family: cursive;
-            font-size: 24px;
-            font-weight: 500;
-            text-align: left;
-            margin-bottom: 10px;
+            @include title();
         }
 
         ul{
@@ -608,16 +544,7 @@ body{
         padding-top: 50px;
         overflow: hidden;
         .text-gradient {
-            font-size: 2.5rem;
-            font-weight: bold;
-            font-family: $pacifico-font;
-            background: linear-gradient(to right,
-                    $second-color,
-                    rgba(202, 16, 35, 0.77),
-                    rgb(201, 5, 25));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            @include text-gradient();
         }
         .container{
             .categories{
