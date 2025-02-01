@@ -1,7 +1,7 @@
 # Learn, Cook, Eat Your Food
 
 This project is a web application that displays a list of Meals. The app uses the [themealdb Database API](https://www.themealdb.com/api.php) to fetch meals, ingredients and Instructions.
-# [live demo](https://game-over-route-rouge.vercel.app/)
+
 ![Add Product Preview](./public/preview-1.png)
 ![Add Product Preview](./public/preview-2.png)
 ![Add Product Preview](./public/preview-3.png)
