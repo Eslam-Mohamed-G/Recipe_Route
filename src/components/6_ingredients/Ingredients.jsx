@@ -24,7 +24,7 @@ function Ingredients() {
                         {Ingredients ? Ingredients?.map((element) => (
                             <li className="" data-aos="fade-up" key={element.idIngredient}>
                                 <div className='li-body'>
-                                    <img src={`https:/www.themealdb.com/images/ingredients/${element.strIngredient}-small.png`} alt={element.strIngredient} />
+                                    <img src={`https://www.themealdb.com/images/ingredients/${element.strIngredient}-small.png`} alt={element.strIngredient} />
                                     <p>{element.strIngredient}</p>
                                     {/* <p>{element.strDescription || "No description available"}</p> */}
                                 </div>
