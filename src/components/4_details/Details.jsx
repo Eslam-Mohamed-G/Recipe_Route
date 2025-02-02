@@ -41,7 +41,7 @@ function Details() {
                                 const measure = element[`strMeasure${i + 1}`];
                                 return ingredient ? (
                                     <li data-aos="zoom-in" key={i}>
-                                        <img src={`https:/www.themealdb.com/images/ingredients/${ingredient}.png`} alt={ingredient} />
+                                        <img src={`https://www.themealdb.com/images/ingredients/${ingredient}.png`} alt={ingredient} />
                                         <p>{ingredient}</p> 
                                         <p>{measure}</p>
                                     </li>
