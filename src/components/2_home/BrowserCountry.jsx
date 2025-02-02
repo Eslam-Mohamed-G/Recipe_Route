@@ -70,7 +70,7 @@ function BrowserCountry() {
     AOS.init({once: false,});
   }, [area]);
   return (
-    <div className='container browserCountry'>
+    <div className='browserCountry'>
       <h1>Browse Country </h1>
       <div className='country-div'>
         {country?.map((element) => (

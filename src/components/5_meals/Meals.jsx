@@ -56,15 +56,13 @@ function Meals() {
                         </div>
                     </div>
 
-                    <div className='meal-container'>
+                    <div className='meal-container container'>
                         {mealsByCategoy?.map((meals) => (
                             <div className='meal-card' key={meals.idMeal}>
                                 <div className='meal-card-body'>
                                     <figure className='meal-img'>
                                         <img src={meals.strMealThumb} alt={meals.strMealThumb} />
                                     </figure>
-                                    <div className="meal-text">
-                                    </div>
                                     <div className='meal-card-footer'>
                                         <p>{meals.strMeal.split(' ').slice(0, 2).join(' ')}</p>
                                         <button

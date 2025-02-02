@@ -47,7 +47,7 @@ function ResponsiveSlider() {
     }
 
     return (
-        <div className="slider-container container" data-aos="fade-up">
+        <div className="slider-container" data-aos="fade-up">
             <h1 className="slider-title">Popular Meals Categories</h1>
             <Slider {...settings}>
                 {meal.map((category, index) => (

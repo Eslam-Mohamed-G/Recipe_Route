@@ -14,8 +14,9 @@ function Details() {
         <>
             <Navbar/>
         <div className='container'>
+            <div className='row'>
             {details?.map((element) => (
-                <div className="row details" key={element.idMeal}>
+                <div className="details" key={element.idMeal}>
                     <div className='col-md-4'>
                         <div className='card' data-aos="fade-down">
                             <div className='card-body'>
@@ -75,6 +76,8 @@ function Details() {
                     </div>
                 </div>
             ))}
+
+            </div>
         </div>
         <Footer/>
         </>

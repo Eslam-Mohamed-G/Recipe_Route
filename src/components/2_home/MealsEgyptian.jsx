@@ -24,7 +24,7 @@ function MealsEgyptian() {
     }, []);
 
     return (
-        <div className='container mealsEgyptian'>
+        <div className='mealsEgyptian'>
             <h1>some egyptian meals</h1>
             <div className='row'>
                 {mealsEgyptian ? mealsEgyptian?.map((meal) => (
