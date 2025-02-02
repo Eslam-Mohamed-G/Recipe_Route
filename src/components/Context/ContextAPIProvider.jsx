@@ -114,7 +114,7 @@ function ContextAPIProvider({ children }) {
                 const response = await axios.get('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
                 sessionStorage.setItem('mealsCategories', JSON.stringify(response?.data?.meals));
                 setCategories(response?.data?.meals);
-                console.log(response?.data?.meals);
+                // console.log(response?.data?.meals);
             } catch (error) {
                 console.error('Error fetching categories:', error);
             } finally {
@@ -137,7 +137,7 @@ function ContextAPIProvider({ children }) {
             try {
                 const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
                 setMealsByCategoy(response?.data?.meals);
-                console.log(response?.data?.meals);
+                // console.log(response?.data?.meals);
             } catch (error) {
                 console.error('Filter meals by Category:', error);
             }
