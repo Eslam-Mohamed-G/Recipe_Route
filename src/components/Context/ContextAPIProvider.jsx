@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect  } from 'react';
+import React, { createContext, useState, useEffect, useCallback } from 'react';
 import axios from "axios";
 
 export const dataContext = createContext();
@@ -11,44 +11,42 @@ function ContextAPIProvider({ children }) {
         const sliderCategories = sessionStorage.getItem('sliderCategories');
         return sliderCategories ? JSON.parse(sliderCategories) : [];
     });
-    const fetchMeal = async () => {
+    const fetchMeal = useCallback(async () => {
         setLoading(true);
         try {
             const response = await axios.get('https://www.themealdb.com/api/json/v1/1/categories.php');
             sessionStorage.setItem('sliderCategories', JSON.stringify(response?.data?.categories));
             setMeal(response?.data?.categories);
-            // console.log(response?.data?.categories);
         } catch (error) {
             console.error('Error fetching categories:', error);
         } finally {
             setLoading(false);
         };
-    };
+    }, []);
 
     useEffect(() => {
         fetchMeal();
-    }, []);
+    }, [fetchMeal]);
     // List all meal categories for ResponsiveSlider in 2_home Component
 
     // list all Area for BrowserCountery in 2_home  Componenet
     const [countery, setCountery] = useState([]);
-    const fetchArea = async ()=>{
+    const fetchArea = useCallback(async () => {
         setLoading(true);
         try {
             const response = await axios.get('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
-            setCountery(response?.data?.meals)
-            // console.log(response?.data?.meals);
+            setCountery(response?.data?.meals);
         } catch (error) {
-            console.error('Error fetching categories:', error);
+            console.error('Error fetching areas:', error);
         } finally {
             setLoading(false);
-        };
-    };
-    // list all Area for BrowserCountery in 2_home  Componenet
+        }
+    }, []);
 
     useEffect(() => {
         fetchArea();
-    }, []);
+    }, [fetchArea]);
+    // list all Area for BrowserCountery in 2_home  Componenet
 
     // Fetch meals by selected area
     const [selectedArea, setSelectedArea] = useState(null);
