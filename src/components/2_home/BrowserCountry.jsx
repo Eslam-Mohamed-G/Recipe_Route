@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo, useCallback } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { dataContext } from '../Context/ContextAPIProvider';
+import AOS from 'aos';
 import it from '../../assets/counters/it.png';
 import cn from '../../assets/counters/cn.png';
 import eg from '../../assets/counters/eg.png';
@@ -29,12 +30,13 @@ import pt from '../../assets/counters/pt.png';
 import tn from '../../assets/counters/tn.png';
 import ua from '../../assets/counters/UA.png';
 import vn from '../../assets/counters/vn.png';
-import AOS from 'aos';
 
 function BrowserCountry() {
   const { area } = useParams();
   const { setSelectedArea } = useContext(dataContext);
-  const country = [
+
+  // ✅ Performance improvement: Use useMemo to store the states array and not recreate it
+  const country = useMemo(() => [
     { id: 1, imgSrc: gb, name: 'British' },
     { id: 2, imgSrc: cn, name: 'Chinese' },
     { id: 3, imgSrc: eg, name: 'Egyptian' },
@@ -63,24 +65,36 @@ function BrowserCountry() {
     { id: 26, imgSrc: ua, name: 'Ukrainian' },
     { id: 27, imgSrc: vn, name: 'Vietnamese' },
     { id: 28, imgSrc: it, name: 'Italian' },
-  ]
+  ], []);
 
   useEffect(() => {
-    setSelectedArea(area)
-    AOS.init({once: false,});
-  }, [area]);
+    setSelectedArea(area);
+    AOS.init({ once: false });
+  }, [area, setSelectedArea]);
+
+  // ✅ Improve performance: Use useCallback to prevent the function from being recreated on every Render
+  const handleClick = useCallback((name) => {
+    setSelectedArea(name);
+  }, [setSelectedArea]);
+
   return (
     <div className='browserCountry'>
-      <h1>Browse Country </h1>
+      <h1>Browse Country</h1>
       <div className='country-div'>
-        {country?.map((element) => (
-          <NavLink data-aos="zoom-in" to={`/${encodeURIComponent(element.name)}`} key={element.id} onClick={()=>{setSelectedArea(element.name)}} className='country-link'>
-            <img src={element.imgSrc} alt={element.name} />
+        {country.map((element) => (
+          <NavLink
+            data-aos="zoom-in"
+            to={`/${encodeURIComponent(element.name)}`}
+            key={element.id}
+            onClick={() => handleClick(element.name)}
+            className='country-link'
+          >
+            <img src={element.imgSrc} alt={element.name} loading="lazy" />
           </NavLink>
         ))}
       </div>
     </div>
-  )
+  );
 }
 
-export default BrowserCountry
+export default BrowserCountry;
