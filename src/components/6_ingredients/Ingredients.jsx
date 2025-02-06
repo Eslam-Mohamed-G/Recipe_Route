@@ -20,7 +20,7 @@ function Ingredients() {
             <div className='right'>
                 <div className='container'>
                     <h1 className='text-gradient'>Learn, Cook, Eat Your Food</h1>
-                    <ul className="">
+                    <ul className="ingredients-list">
                         {Ingredients ? Ingredients?.map((element) => (
                             <li className="" data-aos="fade-up" key={element.idIngredient}>
                                 <div className='li-body'>
