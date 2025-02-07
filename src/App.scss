@@ -799,11 +799,14 @@ li { display: inline-block; }
     overflow: hidden;
     .content{
         margin-top: 90px;
-        padding-bottom: 90px;
-        min-height: 45dvh;
+        min-height: 30dvh;
     }
     .footer{
         width: 100%;
+        @media (min-width: 640px) {
+            position: fixed;
+            bottom: 0;
+        }
     }
 }
 
