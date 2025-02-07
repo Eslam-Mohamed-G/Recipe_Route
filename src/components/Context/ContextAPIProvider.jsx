@@ -132,12 +132,15 @@ function ContextAPIProvider({ children }) {
         });
         const [mealsByCategoy, setMealsByCategoy] = useState([]);
         const fetchMealsByCategory = async () => {
+            setLoading(true);
             try {
                 const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
                 setMealsByCategoy(response?.data?.meals);
                 // console.log(response?.data?.meals);
             } catch (error) {
                 console.error('Filter meals by Category:', error);
+            } finally {
+                setLoading(false);
             }
         }
         useEffect(() => {
