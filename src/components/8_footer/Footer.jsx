@@ -6,7 +6,6 @@ function Footer() {
     return (
         <div className='footer'>
             <div className='container'>
-                <div className="row">
                     <div className='footer-body'>
                         <Link to='/'>
                             <img src={Logo} alt="logo" className='logo' />
@@ -14,6 +13,7 @@ function Footer() {
                         <p>Route</p>
                     </div>
                     <p className='copy-right'>© 2025 <a href="https://github.com/Eslam-Mohamed-G" target='blank'>Eslam Mohamed</a>. All Rights Reserved.</p>
+                <div className="row">
                 </div>
             </div>
         </div>
