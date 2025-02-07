@@ -61,18 +61,18 @@ function Meals() {
                                 ))}
                             </ul>
 
-                            <select className="categories-select" defaultValue="">
+                            <select className="categories-select" 
+                                defaultValue=""
+                                onChange={(e) => {
+                                    const selectedCategory = e.target.value;
+                                    navigate(`/meals/${selectedCategory}`);
+                                    setSelectedCategory(selectedCategory);
+                                    sessionStorage.setItem('savedCategory', JSON.stringify(selectedCategory));
+                                }}
+                            >
                                 <option value="" disabled>Choose Category</option>
                                 {categories?.map((element, index) => (
-                                    <option
-                                        key={index}
-                                        className='list'
-                                        onClick={() => {
-                                            navigate(`/meals/${element.strCategory}`);
-                                            setSelectedCategory(element.strCategory);
-                                            sessionStorage.setItem('savedCategory', JSON.stringify(element.strCategory));
-                                        }}
-                                    >
+                                    <option key={index} className='list'>
                                         {element.strCategory}
                                     </option>))}
                             </select>
