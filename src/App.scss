@@ -796,13 +796,17 @@ li { display: inline-block; }
 
 .area-container{
     @include flex-center($direction: column);
+    overflow: hidden;
     .content{
         margin-top: 90px;
+        padding-bottom: 90px;
+        min-height: 45dvh;
     }
     .footer{
         width: 100%;
-        position: fixed;
-        bottom: 0;
+        // border: 1px solid red;
+        // position: fixed;
+        // bottom: 0;
     }
 }
 

@@ -6,14 +6,13 @@ import Navbar from '../1_navbar/Navbar';
 function Area() {
   return (
     <div className='area-container'>
-      <Navbar/>
-      <div className='content'>
-
-      <BrowserCountry/>
+      <Navbar />
+      <div className='container content'>
+        <BrowserCountry />
       </div>
-      <div className='footer'>
-      <Footer/>
 
+      <div className='footer'>
+        <Footer />
       </div>
     </div>
   )
