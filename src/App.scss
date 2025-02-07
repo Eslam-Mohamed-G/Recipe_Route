@@ -809,14 +809,12 @@ li { display: inline-block; }
 
 .footer{
     background-color: $second-bg-color;
-    border: 1px solid red;
     .footer-body{
         @include section-divider();
         @include flex-center();
         @include title();
         justify-content: space-between;
         align-items: center;
-        border: 1px solid rebeccapurple;
         padding: 0 15px;
         .logo{
             width: 80px;
