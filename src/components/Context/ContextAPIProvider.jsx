@@ -5,6 +5,7 @@ export const dataContext = createContext();
 
 function ContextAPIProvider({ children }) {
     const [loading, setLoading] = useState(false);
+    const [errorMSG, setErrorMSG] = useState("");
     
     // List all meal categories for ResponsiveSlider in 2_home  Component
     const [meal, setMeal] = useState(() => {
@@ -82,6 +83,7 @@ function ContextAPIProvider({ children }) {
     const [id, setID] = useState(null)
     const fetchDetailsById = async () => {
         setLoading(true);
+        setErrorMSG("");
         try {
             const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
             // console.log(response?.data?.meals);
@@ -89,6 +91,7 @@ function ContextAPIProvider({ children }) {
             sessionStorage.setItem('savedDetails', JSON.stringify(response?.data?.meals));
         } catch (error) {
             console.error('meals details:', error);
+            setErrorMSG(error.message)
         } finally{
             setLoading(false);
         }
@@ -108,13 +111,15 @@ function ContextAPIProvider({ children }) {
         });
         const fetchMealCategories = async () => {
             setLoading(true);
+            setErrorMSG("");
             try {
                 const response = await axios.get('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
                 sessionStorage.setItem('mealsCategories', JSON.stringify(response?.data?.meals));
                 setCategories(response?.data?.meals);
                 // console.log(response?.data?.meals);
             } catch (error) {
-                console.error('Error fetching categories:', error);
+                // console.error('Error fetching categories:', error);
+                setErrorMSG(error.message);
             } finally {
                 setLoading(false);
             };
@@ -168,7 +173,7 @@ function ContextAPIProvider({ children }) {
 
 
     return (
-        <dataContext.Provider value={{ meal, countery, categories, mealsByCategoy, setSelectedCategory, setMeal, loading, selectedArea, setSelectedArea, mealsArea, setID, details, Ingredients }}>
+        <dataContext.Provider value={{ meal, countery, categories, mealsByCategoy, setSelectedCategory, setMeal, loading, errorMSG, selectedArea, setSelectedArea, mealsArea, setID, details, Ingredients }}>
             {children}
         </dataContext.Provider>
     )
